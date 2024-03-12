@@ -2,11 +2,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-def plot_data():
+def plot_data(indicator):
 
     df = pd.read_csv('cleaned_data.csv')
 
-    df_filtered = df[df['Indicator'] == 'Prevalence of obesity among US adults (20+) (Percentage); BRFSS']
+    df_filtered = df[df['Indicator'] == indicator]
     df_filtered = df_filtered[df_filtered['Break_out'] == 'Overall']
 
     average_values = df_filtered.groupby('LocationDesc')['Data_Value'].mean()
@@ -18,9 +18,11 @@ def plot_data():
 
     plt.rcParams.update({'font.weight': 'bold'})
 
+    indicator = indicator[:indicator.find(' (Percentage)')]
+
     plt.figure(figsize=(14, 8))
     plt.barh(y=average_values.index, width=average_values.values, color=colors)
-    plt.title('Prevalence of obesity among US adults (20+)', fontweight='bold')
+    plt.title(indicator, fontweight='bold')
     plt.xlabel('Values, %', fontweight='bold')
     plt.ylabel('States', fontweight='bold')
     plt.savefig('All_States_Plot')
@@ -28,4 +30,4 @@ def plot_data():
     return max_state_var
 
 
-plot_data()
+plot_data('Prevalence of obesity among US adults (20+) (Percentage); BRFSS')

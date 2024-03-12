@@ -5,12 +5,12 @@ import numpy as np
 import find_states
 
 
-def year_graphs(category):
+def year_graphs(category, indicator):
     max_state_var = find_states.plot_data()
 
     df = pd.read_csv('cleaned_data.csv')
 
-    df_filtered = df[df['Indicator'] == 'Prevalence of obesity among US adults (20+) (Percentage); BRFSS']
+    df_filtered = df[df['Indicator'] == indicator]
     df_filtered = df_filtered[df_filtered['LocationDesc'] == max_state_var]
     df_filtered = df_filtered[df_filtered['Break_Out_Category'] == category]
 
@@ -32,8 +32,10 @@ def year_graphs(category):
         rects = ax.bar(x + width * i, measurements, width, label=value, color=colors(i / len(values)))
         ax.bar_label(rects, padding=3)
 
+    indicator = indicator[:indicator.find(' among')]
+
     ax.set_ylabel('Values, %', fontweight='bold')
-    ax.set_title(f'Obesity Prevalence by {category} and Year', fontweight='bold')
+    ax.set_title(f'{indicator} by {category} and Year', fontweight='bold')
     ax.set_xticks(x + width * len(values) / 2)
     ax.set_xticklabels(years)
     ax.legend(loc='upper left')
@@ -42,6 +44,8 @@ def year_graphs(category):
     plt.savefig(f'{category}_{max_state_var}_Plot')
 
 
-year_graphs('Age')
-year_graphs('Gender')
-year_graphs('Race')
+# Example usage:
+
+year_graphs('Age', 'Prevalence of coronary heart disease among US adults (18+) (Percentage); BRFSS')
+year_graphs('Gender', 'Prevalence of obesity among US adults (20+) (Percentage); BRFSS')
+year_graphs('Race', 'Prevalence of hypertension medication use among US adults (18+) with hypertension (Percentage); BRFSS')
