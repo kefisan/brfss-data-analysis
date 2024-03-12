@@ -6,6 +6,7 @@ import find_states
 
 
 def year_graphs(category, indicator):
+
     max_state_var = find_states.plot_data()
 
     df = pd.read_csv('cleaned_data.csv')
