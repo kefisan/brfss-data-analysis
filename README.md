@@ -3,7 +3,7 @@
 This project involves cleaning and preparing the Behavioral Risk Factor Surveillance System (BRFSS) dataset for further analysis with nice, colourful graphs. The BRFSS is a United States health survey that looks at behavioral risk factors.
 
 ## Dataset
-The Dataset used in this comparison is the Anime Dataset in Public Domain, which contains 27 columns. Provided code includes data cleaning, general states comparation by Indicator and later deeper analysis of the state with maxinum percentage value in previous comparation.
+The Dataset used in this comparison is the BRFSS dataset in Public Domain, which contains 27 columns. Provided code includes data cleaning, general states comparation by Indicator and later deeper analysis of the state with maxinum percentage value in previous comparation.
 
 Link to the original Dataset:
 
